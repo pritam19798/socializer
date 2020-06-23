@@ -1,0 +1,68 @@
+<header>
+<nav class="navbar navbar-expand-sm navbar-dark bg-success">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img src="../../../assets/img.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      Socializer
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNav()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse show" id="navbarNavAltMarkup" [ngClass]="{'show':openNav}">
+      <ul class="navbar-nav ml-auto">
+        <!-- if the user is present then printing email -->
+        <li class="nav-item ">
+          <a 
+          *ngIf="email"
+          routerLinkActive="active"
+          [routerLink]=" ['Profile'] "
+          class="nav-item nav-link">
+          {{name}}
+          </a>
+        </li>  
+      
+
+        <li class="nav-item ">   
+        <a 
+        class="nav-item nav-link"
+        
+        [routerLink]=" ['/'] " 
+        >Home</a>
+        </li>
+        <!-- conditionally rendering links  -->
+        <li class="nav-item "> 
+        <a *ngIf="!email" 
+        class="nav-item nav-link"
+        routerLinkActive="active"
+        [routerLink]=" ['/signin'] " 
+         >Sign In</a>
+        </li> 
+        <li class="nav-item ">  
+        <a *ngIf="!email" 
+        class="nav-item nav-link"
+        routerLinkActive="active"
+        [routerLink]=" ['/signup'] " 
+         >Sign Up</a>
+        </li> 
+        <li class="nav-item ">
+        <a 
+        *ngIf="email" 
+        class="nav-item nav-link text-white"
+        (click)="handleSignOut()"
+        >Log Out</a>
+      </li>   
+      <li class="nav-item ">
+        <a 
+        *ngIf="email" 
+        class="nav-item nav-link btn btn-success text-white"
+        routerLinkActive="active"
+        [routerLink]=" ['/addpost'] "
+         >
+          Post Your awesome Story</a>
+        </li>
+      </ul>
+  
+    </div>
+  </nav>
+</header>
+  
