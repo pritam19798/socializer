@@ -1,9 +1,10 @@
-<div class="card mb-3 mt-4 horizontal-display">
-    <div class="d-flex justify-content-center align-items-center">
+<div class="card mb-3 mt-4 horizontal-display row">
+    <div class="d-flex justify-content-center align-items-center col-sm-3">
       <img [src]="user.picture" class="rounded-circle ml-2" />
     </div>
-    <div class="card-body">
+    <div class="card-body col-sm-9">
       <h5 class="card-title">{{ user.name | uppercase }}</h5>
+      <small class="card-title text-muted text-center">{{ user.username  }}</small>
       <p class="card-text">{{ user.bio }}</p>
     </div>
   </div>
