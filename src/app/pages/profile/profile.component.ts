@@ -10,7 +10,7 @@ import { finalize } from 'rxjs/operators';
 //image Compressor browser-image-resizer
 import { readAndCompressImage } from 'browser-image-resizer';
 import { imageConfig } from 'src/utils/config';
-import { v3 as uuidv3 } from 'uuid';
+import { v4, v3 as uuidv3 } from 'uuid';
 
 @Component({
   selector: 'app-profile',
@@ -100,7 +100,7 @@ export class ProfileComponent implements OnInit {
     const file=event.target.files[0];
     let resizedImage= await readAndCompressImage(file,imageConfig)
     let filePatth:string
-    filePatth=`${this.uid}/profile_picture/${uuidv3(file.name,uuidv3.DNS)}`
+    filePatth=`${this.uid}/profile_picture/${uuidv3(`${v4()}file.name`,uuidv3.DNS)}`
 
     const fileRef=this.storage.ref(filePatth)
     const task =this.storage.upload(filePatth,resizedImage)

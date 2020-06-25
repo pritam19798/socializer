@@ -20,6 +20,7 @@
                       class="profile"
                     />
                   </label>
+                  <br>
   
                   <input
                     type="file"
@@ -27,7 +28,8 @@
                     id="imagepicker"
                     accept="image/*"
                     multiple="{false}"
-                    hidden
+                    class="image-pic "
+                    
                     (change)="uploadImage($event)"
                   />
                 </div>
@@ -49,7 +51,7 @@
                 *ngIf="!phoUpload"
                 class="text-success text-uppercase text-center mb-3"
               >
-                Click above Picture to Upload profile Picture 
+                Click above to Upload profile Picture 
               </div>
               </div>
   
