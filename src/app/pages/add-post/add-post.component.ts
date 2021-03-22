@@ -29,8 +29,8 @@ import { async } from 'rxjs/internal/scheduler/async';
 })
 export class AddPostComponent implements OnInit {
 
-  title:string;
-  description:string;
+  title:string=null;
+  description:string=null;
   picture:string=null;
 
   user=null;
@@ -44,16 +44,16 @@ export class AddPostComponent implements OnInit {
     private router: Router,
     private db:AngularFireDatabase,
     private storage:AngularFireStorage,
-    
+
   ) {
     auth.getUser()
     .subscribe(
-      (user)=>{ 
+      (user)=>{
         this.uid=user.uid
         this.db.object(`users/${ user.uid }`)
         .valueChanges()
         .subscribe(
-          (res)=>{ 
+          (res)=>{
             this.user=res
           }
 
@@ -68,7 +68,7 @@ export class AddPostComponent implements OnInit {
   onSubmit(){
     const uid=this.postuid
     this.db.object(`posts/${ uid }`)
-    .set({ 
+    .set({
       id:uid,
       title:this.title,
       description:this.description,
@@ -84,16 +84,16 @@ export class AddPostComponent implements OnInit {
 
     )
     .catch(
-      (err)=>{ 
+      (err)=>{
         this.toastr.error(err.message,"",{ closeButton:true})
       }
     );
 
     this.router.navigateByUrl('/')
-    
+
   }
 
-  async uploadFile(event){ 
+  async uploadFile(event){
     const file = event.target.files[0];
 
     let resizedImage = await readAndCompressImage(file, imageConfig);
@@ -116,6 +116,6 @@ export class AddPostComponent implements OnInit {
       }),
     ).subscribe();
   }
-  
+
 
 }
